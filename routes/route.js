@@ -20,7 +20,10 @@
 var routes = {
   views: {
     auth: require("./views/auth"),
-    event: require("./views/event")
+    event: require("./views/event"),
+    organizer: require("./views/organizer"),
+    participant: require("./views/participant")
+
   }
 }
 
@@ -36,13 +39,24 @@ function isloggedin(req,res,next){
 
 function isorganizerloggedin(req,res,next){
         if(req.session.user&&req.session.user.type=='Organizer')
-        {    console.log(req.session.user)
+        {    //console.log(req.session.user)
             return next();
         }
        else{
         res.redirect("/login");        
       }
       }
+
+function isparticipantloggedin(req,res,next){
+        if(req.session.user&&req.session.user.type=='Participant')
+        {   // console.log(req.session.user)
+            return next();
+        }
+       else{
+        res.redirect("/login");        
+      }
+      }
+
 
 //Authentication Routes  
 router.get("/",routes.views.auth.home);
@@ -55,17 +69,22 @@ router.get("/logout",routes.views.auth.logout);
 router.get("/loggedin",isloggedin,routes.views.auth.loggedin);
 
 //Event Routes
-router.get("/organizer",isorganizerloggedin,routes.views.auth.organizer);
-router.get("/createEvent",isorganizerloggedin,routes.views.event.create);
-router.post("/createEvent",isorganizerloggedin,routes.views.event.Create);
-router.get("/showevent/:id",isloggedin,routes.views.event.showone); //for both users
-router.get("/showevents",isorganizerloggedin,routes.views.event.show);
-router.get("/showallevents",isloggedin,routes.views.event.showall);  //for both users
-router.delete("/deleteEvent/:id",isorganizerloggedin,routes.views.event.delete);
-router.get("/updateEvent/:id",isorganizerloggedin,routes.views.event.update);
-router.put("/updateEvent/:id",isorganizerloggedin,routes.views.event.Update);
+router.get("/showallEvents",isloggedin,routes.views.event.showall); //for both users
+router.get("/showEvent/:id",isloggedin,routes.views.event.showone); //for both users
 
+//Organizer Routes
+router.get("/organizer",isorganizerloggedin,routes.views.organizer.organizer);
+router.get("/organizer/createEvent",isorganizerloggedin,routes.views.organizer.create);
+router.post("/organizer/createEvent",isorganizerloggedin,routes.views.organizer.Create);
+router.get("/organizer/showmyEvents",isorganizerloggedin,routes.views.organizer.show);
+router.delete("/organizer/deleteEvent/:id",isorganizerloggedin,routes.views.organizer.delete);
+router.get("/organizer/updateEvent/:id",isorganizerloggedin,routes.views.organizer.update);
+router.put("/organizer/updateEvent/:id",isorganizerloggedin,routes.views.organizer.Update);
 
+//Participants Route
+router.get("/participant",isparticipantloggedin,routes.views.participant.participant);
+router.post("/participant/addcomment/:id",isparticipantloggedin,routes.views.participant.addcomment);
+router.post("/participant/addquestion/:id",isparticipantloggedin,routes.views.participant.addquestion);
 
 
 module.exports = router;

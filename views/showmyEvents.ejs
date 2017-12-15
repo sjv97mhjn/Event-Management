@@ -1,4 +1,6 @@
 <% include partials/header %>
+
+<% include partials/organizerpartials %>
 <% events.forEach(function(event){ %>
 	<h2><strong>Title :</strong> <%= event.title %> </h2><br>
 	<l><strong>Date :</strong> <%= event.date %></l><br>
@@ -6,8 +8,8 @@
 	<l><strong>Location :</strong> <%=event.location %></l><br>
 	<l><strong>Ticket Price :</strong> <%=event.ticketprice %></l><br>
 	<p><strong>Description :</strong> <%=event.description %></p><br>
-	<form action="/deleteEvent/<%=event._id%>?_method=DELETE" method="POST">
+	<form action="/organizer/deleteEvent/<%=event._id%>?_method=DELETE" method="POST">
 		<button >Delete</button>
-		<button  formaction="/updateEvent/<%=event._id%>?_method=GET">Update</button>
+		<button  formaction="/organizer/updateEvent/<%=event._id%>?_method=GET">Update</button>
 	</form>
 <% }) %>

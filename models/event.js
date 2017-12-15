@@ -15,13 +15,11 @@ var eventSchema = new mongoose.Schema({
 		rating: { type: Number, max: 5 } ,
 		description: String ,
 		createdat: { type: Date, default: Date.now }
-
 	}],
 	questions:[{
 		user_id:ObjectId,
 		user_name:String ,
-		title: String,
-		description: String ,
+		question:String,
 	    createdat: { type: Date, default: Date.now }
 
 	}],

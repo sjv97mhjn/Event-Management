@@ -1,7 +1,65 @@
     <% include partials/header %>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <h1><%=usertype%></h1>
     <h2><strong>Title :</strong> <%= event.title %> </h2><br>
 	<l><strong>Date :</strong> <%= event.date %></l><br>
 	<l><strong>Organizer :</strong> <%= event.organizer_id%></l><br>
 	<l><strong>Location :</strong> <%=event.location %></l><br>
 	<l><strong>Ticket Price :</strong> <%=event.ticketprice %></l><br>
 	<p><strong>Description :</strong> <%=event.description %></p><br>
+	
+	<h3>COMMENTS</h3>
+	<% event.comments.forEach(function(comment){ %>
+	<div class="container jumbotron">
+	<l><strong>ID : </strong><%=comment.user_id%></l>
+	<l><strong>Name : </strong><%=comment.user_name%></l><br>
+	<l><strong>Title :</strong><%=comment.title%></l>
+	<l><strong>Rating :</strong><%=comment.rating%></l>
+	<l><strong>Created At:</strong><%=comment.createdat%></l><br>
+	<l><strong>Description : </strong><%=comment.description%></l>
+
+	</div>
+	<% }) %>
+	<h3>Questions</h3>
+	<% event.questions.forEach(function(comment){ %>
+	<div class="container jumbotron">
+	<l><strong>ID : </strong><%=comment.user_id%></l>
+	<l><strong>Name : </strong><%=comment.user_name%></l><br>
+	<l><strong>Created At:</strong><%=comment.createdat%></l><br>
+	<l><strong>Question : </strong><%=comment.question%></l>
+
+	</div>
+	<% }) %>
+
+	<% if(usertype=='Participant'){ %>
+
+	<button id="show" class="btn btn-primary">Add Comment</button>
+	<button id="showq" class="btn btn-primary" >Add Question</button>
+	<br><br>
+    <% } %>
+	<form action="/participant/addcomment/<%=event._id%>" id="comment" method='POST' style='display: none;' >
+		<label>Title:</label>
+		<input class="form-control" type="text" name="title">
+		<label>Rating:</label>
+		<input class="form-control" type="number" min=1 max=5 name="rating">
+		<label>Description:</label>
+		<input class="form-control" type="text" name="description">
+		<button >Submit</button>
+	</form>
+	<form action="/participant/addquestion/<%=event._id%>" id="question" method='POST' style='display: none;' >
+		<label>Question:</label>
+		<input class="form-control" type="text" name="question">
+		<button >Submit</button>
+	</form>
+
+	<script type="text/javascript">
+	  $(document).ready(function(){
+	  	$('#show').click(function(){
+	  		$('#comment').show();
+	  	})
+	  		$('#showq').click(function(){
+	  		$('#question').show();
+	  	})
+
+	  })
+	</script>

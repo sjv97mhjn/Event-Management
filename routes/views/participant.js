@@ -1,0 +1,52 @@
+ var  user = require('../../models/user');
+ var  event = require('../../models/event');
+
+ module.exports = {
+ 	participant : function(req,res){
+ 		res.render("participant.ejs");
+ 	},
+ 	addcomment : function(req,res){
+ 	  var comment = {
+ 	  	user_id:req.session.user._id.toString(),
+		user_name:req.session.user.username,
+		title: req.body.title,
+		rating: req.body.rating ,
+		description: req.body.description 
+ 	  }
+
+
+
+ 	  event.findById(req.params.id,function(err,result){
+
+ 	  	result.comments.push(comment);
+ 	  	result.save(function(err2,result2){
+ 	  		if(err2)
+ 	  			console.log(err2);
+ 	  		else
+ 	  			res.redirect("/showevent/"+req.params.id);
+ 	  	})
+ 	  })
+ 	},
+ 	addquestion : function(req,res){
+ 		console.log("addquestion");
+ 	  var question = {
+ 	  	user_id:req.session.user._id.toString(),
+		user_name:req.session.user.username,
+		question: req.body.question, 
+ 	  }
+
+
+
+ 	  event.findById(req.params.id,function(err,result){
+
+ 	  	result.questions.push(question);
+ 	  	result.save(function(err2,result2){
+ 	  		if(err2)
+ 	  			console.log(err2);
+ 	  		else
+ 	  			res.redirect("/showevent/"+req.params.id);
+ 	  	})
+ 	  })
+ 	}
+
+ }

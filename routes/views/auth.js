@@ -82,11 +82,17 @@ module.exports = {
   			if(result==null)
   			{
   				console.log("No user found");
+  				res.redirect("/login");
   			}
   			else{
+  				
   				req.session.user = result;
+
+  				console.log(req.session.user);
   				if(result.type=='Organizer')
-  				res.redirect("/organizer");
+  				    res.redirect("/organizer");
+  			    else if(result.type=='Participant')
+  			    	res.redirect("/participant");
   			    else
   			    res.redirect("/loggedin")
   			}
@@ -96,11 +102,10 @@ module.exports = {
 
 
   },
-  organizer:function(req,res){
-  	res.render("organizer.ejs");
-  },
+  
   logout : function(req,res){
-	req.logout();
+	
+	req.session.destroy();
 
 	if(!req.user){
 	res.redirect("/"); }

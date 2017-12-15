@@ -1,6 +1,8 @@
 <% include partials/header %>
+
+<% include partials/organizerpartials %>
 <div class="container">
-<form action="/updateEvent/<%=event._id%>?_method=PUT" method="post">
+<form action="/organizer/updateEvent/<%=event._id%>?_method=PUT" method="post">
 	<%=date%>
 	
 		<h2>Create Event</h2>
