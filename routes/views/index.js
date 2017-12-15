@@ -1,4 +1,6 @@
  var  user = require('../../models/user');
+ var  event = require('../../models/event');
+
 
  var phone = function(phone){
 var j = 0; 
@@ -16,8 +18,8 @@ var j = 0;
 
 
 module.exports = {
-	home :function(req,res){
-	res.render("home.ejs");
+		home :function(req,res){
+		res.render("home.ejs");
        },
 
 	    register : function(req,res){
@@ -30,8 +32,7 @@ module.exports = {
 
 	    if(r.EMAIL!=null&&r.NAME!=null&&r.USERNAME!=null&&r.PHONE!=null&&r.PASSWORD!=null&&J==0){
 		console.log(r);
-	   var UZER = new user({username:r.USERNAME,email:r.EMAIL,name:r.NAME,phone:Number(r.PHONE),password:r.PASSWORD} );
-
+   	    var UZER = new user({username:r.USERNAME,email:r.EMAIL,name:r.NAME,phone:Number(r.PHONE),password:r.PASSWORD,type:r.usertype} );
 	    UZER.save(function(err,uzer){
 		if(err){
 			//console.log(err);
@@ -97,7 +98,7 @@ module.exports = {
 	res.redirect("/"); }
   },
   loggedin : function(req,res){
-	console.log(req.user);
+	console.log(req.session.user);
 	res.render("loggedin.ejs");
  }
 

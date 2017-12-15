@@ -6,11 +6,10 @@
       session         = require('express-session'),
       mongoose        = require('mongoose'),
       request         = require('request'),
-      ses             = require('node-ses'), 
       session         = require('express-session'),
       controls        = require('../models/config'),
-      client          = ses.createClient({ key: controls.Ases_KID, secret: controls.Ases_AKey}),
       user            = require('../models/user'),
+      event           = require('../models/event'),
       Regex           = require('regex');
 
 
@@ -29,7 +28,7 @@ function isloggedin(req,res,next){
             return next();
         }
        else{
-        res.redirect("/");        
+        res.redirect("/login");        
       }
       }
 

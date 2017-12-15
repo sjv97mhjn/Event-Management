@@ -5,15 +5,10 @@ var express 		= require('express'),
 	session			= require('express-session'),
 	mongoose		= require('mongoose'),
 	request			= require('request'),
-	passport		= require('passport'),
-	localstrategy   = require('passport-local'),
-	ses 			= require('node-ses'), 
 	session         = require('express-session'),
 	controls		= require('./models/config'),
-	client			= ses.createClient({ key: controls.Ases_KID, secret: controls.Ases_AKey}),
 	user 			= require('./models/user'),
-	Regex			= require('regex'),
-	passportlocalmongoose = require('passport-local-mongoose'),
+	event 			= require('./models/event'),
     route 			= require('./routes/route'),
     port 			= 3005;
 
@@ -21,12 +16,7 @@ app.set('views',['./views']);
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({extended :true}));
 app.use(express.static("public"));
-app.use(passport.initialize());
-app.use(passport.session());
 app.use(require("express-session")({ secret:"My_Name_Is_Sajeev_Mahajan",resave:false,saveUninitialized :false}));
-passport.use(new localstrategy(user.authenticate()));
-passport.serializeUser(user.serializeUser());
-passport.deserializeUser(user.deserializeUser());
 mongoose.Promise = global.Promise;
 mongoose.connection.openUri(controls.mongourl);
 // mongoose.connection.on('error', (err) => {
@@ -35,12 +25,7 @@ mongoose.connection.openUri(controls.mongourl);
 //   process.exit();
 //});
 
-
-
-
 app.use('/',route);
-
-
 app.listen(port,function(){
 	console.log("Example App Listening On port" + port);
 })
