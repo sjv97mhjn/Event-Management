@@ -1,0 +1,24 @@
+<% include partials/header %>
+<div class="container">
+<form action="/updateEvent/<%=event._id%>?_method=PUT" method="post">
+	<%=date%>
+	
+		<h2>Create Event</h2>
+		<label >Title</label>
+		<input class="form-control" type="text" name="Title" value="<%=event.title%>" placeholder="Title">
+		
+		<label>Date</label>
+		<input  class="form-control" type="date" name="Date" value="<%=date%>"  placeholder="Date">
+		
+		<label>Location</label>
+		<input class="form-control" type="text" name="Location"  value="<%=event.location%>" placeholder="Location">
+		
+		<label>Description</label>
+		<input class="form-control" type="text" name="Description" value="<%=event.description%>"  placeholder="Description">
+		
+		<label>Ticket Price (INR)</label>
+		<input class="form-control" type="number" name="Price"  value="<%=Number(event.ticketprice)%>" placeholder="Price">
+		<br>
+		<button class="btn btn-success ">Submit</button>
+</form>
+</div>

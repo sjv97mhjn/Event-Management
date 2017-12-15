@@ -19,6 +19,8 @@ var j = 0;
 
 module.exports = {
 		home :function(req,res){
+			if(req.session.user&&req.session.user.type=='Organizer')
+				res.redirect('/organizer');
 		res.render("home.ejs");
        },
 
@@ -83,13 +85,19 @@ module.exports = {
   			}
   			else{
   				req.session.user = result;
-  				res.redirect("/loggedin");
+  				if(result.type=='Organizer')
+  				res.redirect("/organizer");
+  			    else
+  			    res.redirect("/loggedin")
   			}
   		}
   	})
 
 
 
+  },
+  organizer:function(req,res){
+  	res.render("organizer.ejs");
   },
   logout : function(req,res){
 	req.logout();

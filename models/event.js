@@ -3,6 +3,7 @@ var Schema = mongoose.Schema,
     ObjectId = Schema.ObjectId;
 var eventSchema = new mongoose.Schema({
 	title:String,
+	date:Date,
 	organizer_id:ObjectId,
 	location:String,
 	description:String ,

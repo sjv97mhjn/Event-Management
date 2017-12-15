@@ -1,0 +1,22 @@
+<% include partials/header %>
+<div class="container">
+<form action="/createEvent" method="post">
+		<h2>Create Event</h2>
+		<label >Title</label>
+		<input class="form-control" type="text" name="Title" placeholder="Title">
+		
+		<label>Date</label>
+		<input  class="form-control" type="date" name="Date" placeholder="Date">
+		
+		<label>Location</label>
+		<input class="form-control" type="text" name="Location" placeholder="Location">
+		
+		<label>Description</label>
+		<input class="form-control" type="text" name="Description" placeholder="Description">
+		
+		<label>Ticket Price (INR)</label>
+		<input class="form-control" type="number" name="Price" placeholder="Price">
+		<br>
+		<button class="btn btn-success ">Submit</button>
+</form>
+</div>

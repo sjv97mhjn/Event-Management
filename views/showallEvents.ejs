@@ -1,0 +1,10 @@
+<% include partials/header %>
+<% events.forEach(function(event){ %>
+	<h2><strong>Title :</strong> <%= event.title %> </h2><br>
+	<l><strong>Date :</strong> <%= event.date %></l><br>
+	<l><strong>Organizer :</strong> <%= event.organizer_id%></l><br>
+	<l><strong>Location :</strong> <%=event.location %></l><br>
+	<l><strong>Ticket Price :</strong> <%=event.ticketprice %></l><br>
+	<p><strong>Description :</strong> <%=event.description %></p><br>
+	<a href="/showevent/<%=event._id%>"><button>Description</button></a>
+<% }) %>
