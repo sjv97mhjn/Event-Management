@@ -1,1 +1,1 @@
-# CampusKart
+# Event Management
