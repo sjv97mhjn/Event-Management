@@ -10,8 +10,8 @@ var express 		= require('express'),
 	user 			= require('./models/user'),
 	event 			= require('./models/event'),
     route 			= require('./routes/route'),
-    methodOverride = require('method-override'),
-    port 			= 3005;
+    methodOverride  = require('method-override'),
+    port 			= 80;
 
 app.set('views',['./views']);
 app.use(methodOverride('_method'));
