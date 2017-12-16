@@ -1,6 +1,9 @@
 <% include partials/header %>
 <div class="container">
 <form action="/login" method="post">
+		<% if(error) {%>
+		<h5><strong><%= error%> !</strong></h5>
+		<% }%>
 		<h2>LOGIN FORM</h2>
 		<label>USERNAME</label>
 		<input class="form-control" type="text" name="username" placeholder="username">

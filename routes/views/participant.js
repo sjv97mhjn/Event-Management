@@ -17,11 +17,19 @@
 
 
  	  event.findById(req.params.id,function(err,result){
-
+ 	  		if(err){
+ 	  			console.log(err);
+ 	  			//res.redirect("/");
+ 	  			res.redirect("/showevent/"+req.params.id);
+ 	  	
+ 	  		}
  	  	result.comments.push(comment);
  	  	result.save(function(err2,result2){
- 	  		if(err2)
+ 	  		if(err2){
  	  			console.log(err2);
+ 	  					res.redirect("/showevent/"+req.params.id);
+ 	  			
+ 	  		}
  	  		else
  	  			res.redirect("/showevent/"+req.params.id);
  	  	})
@@ -38,11 +46,16 @@
 
 
  	  event.findById(req.params.id,function(err,result){
-
+ 	  		if(err){
+ 	  			console.log(err);
+ 	  			res.redirect("/showevent/"+req.params.id);
+ 	  	}
  	  	result.questions.push(question);
  	  	result.save(function(err2,result2){
- 	  		if(err2)
+ 	  		if(err2){
  	  			console.log(err2);
+ 	  			res.redirect("/showevent/"+req.params.id);
+ 	  	}
  	  		else
  	  			res.redirect("/showevent/"+req.params.id);
  	  	})
@@ -53,7 +66,10 @@
  		console.log(req.body);
  		event.find({title:req.body.title }, function(err,result){
  			if(err)
- 				{console.log(err)}
+ 				{console.log(err)
+ 					res.redirect("/");
+ 	  	
+ 				}
  			else
  			{
  				res.render("showfilterEvents.ejs",{events:result});
@@ -65,7 +81,8 @@
  		console.log(req.body);
  		event.find({organizer_name:req.body.name }, function(err,result){
  			if(err)
- 				{console.log(err)}
+ 				{console.log(err);
+ 					res.redirect("/");}
  			else
  			{
  				res.render("showfilterEvents.ejs",{events:result});

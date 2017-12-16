@@ -62,7 +62,6 @@ function isparticipantloggedin(req,res,next){
 router.get("/",routes.views.auth.home);
 router.get("/register",routes.views.auth.register);        // Register Routes
 router.post("/register",routes.views.auth.Register); 
-router.get("/:email/verify",routes.views.auth.emailverify); //Verification routers
 router.get("/login",routes.views.auth.login);
 router.post("/login",routes.views.auth.Login);
 router.get("/logout",routes.views.auth.logout);

@@ -25,20 +25,21 @@ module.exports = {
        },
 
 	    register : function(req,res){
-		res.render("register.ejs");
+		res.render("register.ejs",{error:null});
 		   },
 	    Register : function(req,res){
 		var r = req.body;	
 		var J=phone(r.PHONE);
 		console.log(J);
 
-	    if(r.EMAIL!=null&&r.NAME!=null&&r.USERNAME!=null&&r.PHONE!=null&&r.PASSWORD!=null&&J==0){
+	    if(r.EMAIL&&r.NAME&&r.USERNAME&&r.PHONE&&r.PASSWORD&&J){
 		console.log(r);
    	    var UZER = new user({username:r.USERNAME,email:r.EMAIL,name:r.NAME,phone:Number(r.PHONE),password:r.PASSWORD,type:r.usertype} );
 	    UZER.save(function(err,uzer){
 		if(err){
-			//console.log(err);
-			throw err;			
+			console.log(err);
+			//throw err;		
+			res.redirect("/register");	
 		}
 			//res.redirect('/login');
 	   else{
@@ -50,44 +51,31 @@ module.exports = {
 		}
 	else
 
-	{  console.log("Some Fields Are Emplty");
-	
-		res.redirect("/register");
+	{   console.log("Some Fields Are Emplty");
+
+		res.render("register.ejs",{error:'Some Fields Are Empty'});
 	}
   },
-
-  emailverify : function(req,res){
-		//res.render("/login");
-		var Email = req.params.email;
-		console.log(Email);
-		user.findOneAndUpdate({email:Email},{$set:{verified:1}},function(err,result){
-			if(err) console.log(err);
-			else {
-				console.log("Email Verified");
-				res.redirect("/login");
-			}
-		})
-	},
   login :function(req,res){
-	res.render("login.ejs");
+	res.render("login.ejs",{error:null});
    },
   Login : function(req,res){
   	
   	user.findOne({username:req.body.username,password:req.body.password},function(err,result){
   		if(err){
   			console.log(err);
+  			res.redirect("/login");
   		}
   		else
   		{
   			if(result==null)
   			{
   				console.log("No user found");
-  				res.redirect("/login");
+  				res.render("login.ejs",{error:'No User Found'});
   			}
   			else{
   				
   				req.session.user = result;
-
   				console.log(req.session.user);
   				if(result.type=='Organizer')
   				    res.redirect("/organizer");
@@ -98,15 +86,10 @@ module.exports = {
   			}
   		}
   	})
-
-
-
   },
   
   logout : function(req,res){
-	
 	req.session.destroy();
-
 	if(!req.user){
 	res.redirect("/"); }
   },
