@@ -31,6 +31,7 @@ var mydate = function(mydate){
  			title:req.body.Title,
 			//organizer_id:req.user._id,
 			organizer_id:req.session.user._id.toString(),
+			organizer_name:req.session.user.username,
 			location:req.body.Location,
 			description:req.body.Description ,
 			ticketprice:req.body.Price,

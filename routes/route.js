@@ -70,6 +70,7 @@ router.get("/loggedin",isloggedin,routes.views.auth.loggedin);
 
 //Event Routes
 router.get("/showallEvents",isloggedin,routes.views.event.showall); //for both users
+router.get("/showallEvents/:page",isloggedin,routes.views.event.showall); //for both users
 router.get("/showEvent/:id",isloggedin,routes.views.event.showone); //for both users
 
 //Organizer Routes
@@ -85,6 +86,8 @@ router.put("/organizer/updateEvent/:id",isorganizerloggedin,routes.views.organiz
 router.get("/participant",isparticipantloggedin,routes.views.participant.participant);
 router.post("/participant/addcomment/:id",isparticipantloggedin,routes.views.participant.addcomment);
 router.post("/participant/addquestion/:id",isparticipantloggedin,routes.views.participant.addquestion);
+router.post("/filterbytitle",isparticipantloggedin,routes.views.participant.titlefilter);
+router.post("/filterbyname",isparticipantloggedin,routes.views.participant.namefilter);
 
 
 module.exports = router;

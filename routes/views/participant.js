@@ -47,6 +47,31 @@
  	  			res.redirect("/showevent/"+req.params.id);
  	  	})
  	  })
+ 	},
+ 	titlefilter : function(req,res){
+ 		//console.log("Hello");
+ 		console.log(req.body);
+ 		event.find({title:req.body.title }, function(err,result){
+ 			if(err)
+ 				{console.log(err)}
+ 			else
+ 			{
+ 				res.render("showfilterEvents.ejs",{events:result});
+ 			}
+ 		})
+ 	},
+ 	namefilter : function(req,res){
+ 		console.log("Hello");
+ 		console.log(req.body);
+ 		event.find({organizer_name:req.body.name }, function(err,result){
+ 			if(err)
+ 				{console.log(err)}
+ 			else
+ 			{
+ 				res.render("showfilterEvents.ejs",{events:result});
+ 			}
+ 		})
  	}
+
 
  }

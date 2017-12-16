@@ -1,10 +1,12 @@
 var mongoose = require('mongoose');
+var mongoosePaginate = require('mongoose-paginate');
 var Schema = mongoose.Schema,
     ObjectId = Schema.ObjectId;
 var eventSchema = new mongoose.Schema({
 	title:String,
 	date:Date,
 	organizer_id:ObjectId,
+	organizer_name:String,
 	location:String,
 	description:String ,
 	ticketprice: Number,
@@ -25,5 +27,6 @@ var eventSchema = new mongoose.Schema({
 	}],
 	createdat: { type: Date, default: Date.now }
 });
+eventSchema.plugin(mongoosePaginate);
 var event = mongoose.model('Event',eventSchema);
 module.exports = event;

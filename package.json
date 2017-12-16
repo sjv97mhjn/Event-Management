@@ -26,6 +26,7 @@
     "fs": "0.0.1-security",
     "method-override": "^2.3.10",
     "mongoose": "^4.11.13",
+    "mongoose-paginate": "^5.0.3",
     "node-ses": "^2.0.5",
     "nodemon": "^1.12.1",
     "passport": "^0.4.0",
