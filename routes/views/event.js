@@ -26,7 +26,7 @@ module.exports = {
  				}
  			else
  			{	//console.log(result.docs);
- 				res.render("showallEvents.ejs",{events:result.docs,page:page});
+ 				res.render("showallEvents.ejs",{events:result.docs,page:page,usertype : req.session.user.type});
  			}
  		})
 

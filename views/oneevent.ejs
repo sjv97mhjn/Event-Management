@@ -1,13 +1,15 @@
     <% include partials/header %>
+    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <h1><%=usertype%></h1>
-    <h2><strong>Title :</strong> <%= event.title %> </h2><br>
+    <div class="container">
+    	<h2><strong>Title :</strong> <%= event.title %> </h2><br>
 	<l><strong>Date :</strong> <%= event.date %></l><br>
 	<l><strong>Organizer :</strong> <%= event.organizer_id%></l><br>
 	<l><strong>Location :</strong> <%=event.location %></l><br>
 	<l><strong>Ticket Price :</strong> <%=event.ticketprice %></l><br>
 	<p><strong>Description :</strong> <%=event.description %></p><br>
-	
+    </div>
+    
 	<h3>COMMENTS</h3>
 	<% event.comments.forEach(function(comment){ %>
 	<div class="container jumbotron">

@@ -1,5 +1,12 @@
 <% include partials/header %>
+	<%if(usertype=="Organizer"){ %>
+	<% include partials/organizerpartials %>
+	<%}else { %>
+	<% include partials/participantpartials %>
+	<%}%>
+	
 <% events.forEach(function(event){ %>
+	<div class="container">
 	<h2><strong>Title :</strong> <%= event.title %> </h2><br>
 	<l><strong>Organizer Name :</strong> <%= event.organizer_name %></l><br>
 	<l><strong>Date :</strong> <%= event.date %></l><br>
@@ -8,9 +15,12 @@
 	<l><strong>Ticket Price :</strong> <%=event.ticketprice %></l><br>
 	<p><strong>Description :</strong> <%=event.description %></p><br>
 	<a href="/showevent/<%=event._id%>"><button>Description</button></a>
+</div>
 <% }) %>
 <br>
+<div class="container">
 <% page = Number(page)-1 ;%>
 <a href="/showallevents/<%=page%>"><button class="btn btn-primary"> <-- Previous Page</button></a>
 <% page = Number(page)+2 ;%>
 <a href="/showallevents/<%=page%>"><button class="btn btn-primary">Next Page --> </button></a>
+</div>

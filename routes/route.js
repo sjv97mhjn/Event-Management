@@ -85,8 +85,8 @@ router.put("/organizer/updateEvent/:id",isorganizerloggedin,routes.views.organiz
 router.get("/participant",isparticipantloggedin,routes.views.participant.participant);
 router.post("/participant/addcomment/:id",isparticipantloggedin,routes.views.participant.addcomment);
 router.post("/participant/addquestion/:id",isparticipantloggedin,routes.views.participant.addquestion);
-router.post("/filterbytitle",isparticipantloggedin,routes.views.participant.titlefilter);
-router.post("/filterbyname",isparticipantloggedin,routes.views.participant.namefilter);
+router.post("/participant/filterbytitle",isparticipantloggedin,routes.views.participant.titlefilter);
+router.post("/participant/filterbyname",isparticipantloggedin,routes.views.participant.namefilter);
 
 
 module.exports = router;
