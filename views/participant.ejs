@@ -1,13 +1,2 @@
     <% include partials/header %>
-    <form action="/participant/filterbytitle" method="post">
-    	<h4>Filter By : </h4>
-        <label>Title :        </label>
-    	<input type="text" name="title" placeholder="Title">
-    	<button>Search</button>
-    	<label> OR </label>
-    	<label>Organizer Name:</label>
-    	<input type="text" name="name" placeholder="Name">
-    	<button formaction="/participant/filterbyname">Search</button>
-    </form>
-    <br>
-    <a href="/showallevents"><button>Show All Events</button></a>
+    <% include partials/participantpartials %>

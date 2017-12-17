@@ -62,7 +62,7 @@
  	  })
  	},
  	titlefilter : function(req,res){
- 		//console.log("Hello");
+ 		console.log("Title");
  		console.log(req.body);
  		event.find({title:req.body.title }, function(err,result){
  			if(err)
@@ -71,13 +71,13 @@
  	  	
  				}
  			else
- 			{
+ 			{	console.log(result);
  				res.render("showfilterEvents.ejs",{events:result});
  			}
  		})
  	},
  	namefilter : function(req,res){
- 		console.log("Hello");
+ 		console.log("Organizer");
  		console.log(req.body);
  		event.find({organizer_name:req.body.name }, function(err,result){
  			if(err)
